@@ -10,7 +10,8 @@ export DOCKER_CLI_EXPERIMENTAL="enabled"
 docker buildx use homecluster
 
 # Build & push latest
-docker buildx build -t "${REPO}/${IMAGE}:latest" --compress --push --platform "${PLATFORMS}" .
+docker buildx build --no-cache -t "${REPO}/${IMAGE}:latest" --compress --push --platform "${PLATFORMS}" .
+sleep 30 # give docker hub time to catch up
 
 # Get readsb version from latest
 docker pull "${REPO}/${IMAGE}:latest"
