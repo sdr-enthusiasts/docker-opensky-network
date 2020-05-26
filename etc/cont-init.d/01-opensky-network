@@ -1,0 +1,65 @@
+#!/usr/bin/with-contenv bash
+# shellcheck shell=bash
+
+# Check to make sure the correct command line arguments have been set
+EXITCODE=0
+if [ -z "${LAT}" ]; then
+  echo "ERROR: LAT environment variable not set"
+  EXITCODE=1
+fi
+if [ -z "${LONG}" ]; then
+  echo "ERROR: LONG environment variable not set"
+  EXITCODE=1
+fi
+if [ -z "${BEASTHOST}" ]; then
+  echo "ERROR: BEASTHOST environment variable not set"
+  EXITCODE=1
+fi
+if [ -z "${ALT}" ]; then
+  echo "ERROR: ALT environment variable not set"
+  EXITCODE=1
+fi
+if [ -z "${OPENSKY_USERNAME}" ]; then
+  echo "ERROR: OPENSKY_USERNAME environment variable not set"
+  EXITCODE=1
+fi
+if [ $EXITCODE -ne 0 ]; then
+  exit 1
+fi
+
+# Set up timezone
+if [ -z "${TZ}" ]; then
+  echo "WARNING: TZ environment variable not set"
+else
+  ln -snf "/usr/share/zoneinfo/$TZ" /etc/localtime && echo "$TZ" >/etc/timezone
+fi
+
+# Generate config based on environment variables
+CONFIGFILE=/var/lib/openskyd/conf.d/10-opensky.conf
+echo "[GPS]" > ${CONFIGFILE}
+echo "Latitude=${LAT}" >> ${CONFIGFILE}
+echo "Longitude=${LONG}" >> ${CONFIGFILE}
+echo "Altitude=${ALT}" >> ${CONFIGFILE}
+echo "" >> ${CONFIGFILE}
+echo "[DEVICE]" >> ${CONFIGFILE}
+echo "Type=${OPENSKY_DEVICE_TYPE}" >> ${CONFIGFILE}
+echo "" >> ${CONFIGFILE}
+echo "[IDENT]" >> ${CONFIGFILE}
+echo "Username=${OPENSKY_USERNAME}" >> ${CONFIGFILE}
+echo "" >> ${CONFIGFILE}
+echo "[INPUT]" >> ${CONFIGFILE}
+echo "Host=${BEASTHOST}" >> ${CONFIGFILE}
+echo "Port=${BEASTPORT}" >> ${CONFIGFILE}
+
+if [ -z "${OPENSKY_SERIAL}" ]
+then
+  echo ""
+  echo "WARNING: OPENSKY_SERIAL environment variable was not set!"
+  echo "Please make sure you note down the serial generated."
+  echo "Pass the key as environment var OPENSKY_SERIAL on next launch!"
+  echo ""
+else
+  CONFIGFILE=/var/lib/openskyd/conf.d/05-serial.conf
+  echo "[Device]" >> ${CONFIGFILE}
+  echo "serial = ${OPENSKY_SERIAL}" >> ${CONFIGFILE}
+fi
