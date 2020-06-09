@@ -11,6 +11,7 @@ RUN set -x && \
         binutils \
         ca-certificates \
         curl \
+        file \
         gnupg \
         xz-utils \
         && \
@@ -37,6 +38,7 @@ RUN set -x && \
         binutils \
         ca-certificates \
         curl \
+        file \
         gnupg \
         xz-utils \
         && \
