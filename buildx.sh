@@ -15,7 +15,7 @@ sleep 30 # give docker hub time to catch up
 
 # Get readsb version from latest
 docker pull "${REPO}/${IMAGE}:latest"
-VERSION=$(docker run --entrypoint cat "${REPO}/${IMAGE}:latest" /VERSIONS | grep opensky-feeder | cut -d " " -f 2)
+VERSION=$(docker run --rm --entrypoint cat "${REPO}/${IMAGE}:latest" /VERSIONS | grep opensky-feeder | cut -d " " -f 2)
 
 # Build & push version-specific
 docker buildx build -t "${REPO}/${IMAGE}:${VERSION}" --compress --push --platform "${PLATFORMS}" .
