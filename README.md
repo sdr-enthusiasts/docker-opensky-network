@@ -255,6 +255,8 @@ No ports need to be mapped into this container.
 
 * All processes are logged to the container's stdout, and can be viewed with `docker logs [-f] container`.
 
-## Issues
+## Getting Help
 
 You can [log an issue](https://github.com/mikenye/docker-opensky-network/issues) on the project's GitHub.
+
+I also have a [Discord channel](https://discord.gg/sTf9uYF), feel free to [join](https://discord.gg/sTf9uYF) and converse.
