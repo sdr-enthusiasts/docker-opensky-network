@@ -4,6 +4,8 @@ ENV BEASTPORT=30005 \
     OPENSKY_DEVICE_TYPE=default \
     S6_BEHAVIOUR_IF_STAGE2_FAILS=2
 
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+
 RUN set -x && \
     apt-get update -y && \
     apt-get install --no-install-recommends -y \
@@ -21,14 +23,15 @@ RUN set -x && \
     apt-get update -y && \
     # Install opensky-feeder
     mkdir -p /src/opensky-feeder && \
-    cd /src/opensky-feeder && \
+    pushd /src/opensky-feeder && \
     chown _apt /src/opensky-feeder && \
     apt-get download opensky-feeder && \
-    ar vx *.deb && \
+    ar vx ./*.deb && \
     tar xvf data.tar.xz -C / && \
     mkdir -p /var/lib/openskyd/conf.d && \
+    popd && \
     # Document version
-    export OPENSKY_VERSION=$(apt-cache show opensky-feeder | grep Version | cut -d " " -f 2) && \
+    OPENSKY_VERSION=$(apt-cache show opensky-feeder | grep Version | cut -d " " -f 2) && \
     echo "opensky-feeder ${OPENSKY_VERSION}" >> /VERSIONS && \
     # Deploy s6-overlay
     curl -s https://raw.githubusercontent.com/mikenye/deploy-s6-overlay/master/deploy-s6-overlay.sh | sh && \

@@ -24,7 +24,7 @@ Currently, this image should pull and run on the following architectures:
 
 First-time users should obtain a feeder serial number.
 
-Firstly, make sure you have registered for an account on the (OpenSky Network website)[https://opensky-network.org/], and have your username on-hand.
+Firstly, make sure you have registered for an account on the [OpenSky Network website](https://opensky-network.org/), and have your username on-hand.
 
 In order to obtain a feeder serial number, we will start a temporary container running `opensky-feeder`, which will connect to OpenSky Network and be issued a serial number. The container will automatically be stopped and cleaned up after 60 seconds.
 
@@ -227,7 +227,7 @@ services:
       - OPENSKY_USERNAME=johnnytightlips
       - OPENSKY_SERIAL=-1408234269
     networks:
-      - adsbnet 
+      - adsbnet
 ```
 
 The `readsb` commands above are an example. For an explanation of the `mikenye/readsb` image's configuration, see that image's readme.
