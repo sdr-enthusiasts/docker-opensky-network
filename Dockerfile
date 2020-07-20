@@ -4,6 +4,8 @@ ENV BEASTPORT=30005 \
     OPENSKY_DEVICE_TYPE=default \
     S6_BEHAVIOUR_IF_STAGE2_FAILS=2
 
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+
 RUN set -x && \
     apt-get update -y && \
     apt-get install --no-install-recommends -y \
