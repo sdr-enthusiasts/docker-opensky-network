@@ -116,7 +116,7 @@ Failure to specify the `OPENSKY_SERIAL` environment variable will cause a new fe
 docker run \
  -d \
  --rm \
- --name rbfeeder \
+ --name opensky \
  -e TZ="YOURTIMEZONE" \
  -e BEASTHOST=YOURBEASTHOST \
  -e LAT=YOURLATITUDE \
@@ -142,7 +142,7 @@ For example:
 docker run \
  -d \
  --rm \
- --name rbfeeder \
+ --name opensky \
  -e TZ="Australia/Perth" \
  -e BEASTHOST=10.0.0.1 \
  -e LAT=-33.33333 \
