@@ -64,9 +64,9 @@ fi
 
 # Make sure we're connected to a BEASTHOST 
 if netstat -anp | grep "$BEASTIP:$BEASTPORT" | grep ESTABLISHED > /dev/null; then
-    echo "established BEAST connection to "$BEASTIP:$BEASTPORT". $STR_HEALTHY"
+    echo "established BEAST connection to \"$BEASTIP:$BEASTPORT\". $STR_HEALTHY"
 else
-    echo "no established BEAST connection to "$BEASTIP:$BEASTPORT". $STR_UNHEALTHY"
+    echo "no established BEAST connection to \"$BEASTIP:$BEASTPORT\". $STR_UNHEALTHY"
     EXITCODE=1
 fi
 
