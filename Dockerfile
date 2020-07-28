@@ -15,6 +15,7 @@ RUN set -x && \
         curl \
         file \
         gnupg \
+        net-tools \
         xz-utils \
         && \
     # Add opensky-network repo
