@@ -51,9 +51,9 @@ check_service_deathtally 'opensky-feeder'
 
 # make sure we're feeding beast/beastreduce data to adsbexchange 
 if netstat -anp | grep -P '^tcp.*\:10004.*ESTABLISHED.*openskyd.*$' > /dev/null; then
-    echo "established connection to opensky network. HEALTHY"
+    echo "established connection to opensky network. $STR_HEALTHY"
 else
-    echo "no established connection to opensky network. UNHEALTHY"
+    echo "no established connection to opensky network. $STR_UNHEALTHY"
     EXITCODE=1
 fi
 
@@ -64,9 +64,9 @@ fi
 
 # Make sure we're connected to a BEASTHOST 
 if netstat -anp | grep "$BEASTIP:$BEASTPORT" | grep ESTABLISHED > /dev/null; then
-    echo "established BEAST connection to "$BEASTIP:$BEASTPORT". HEALTHY"
+    echo "established BEAST connection to "$BEASTIP:$BEASTPORT". $STR_HEALTHY"
 else
-    echo "no established BEAST connection to "$BEASTIP:$BEASTPORT". UNHEALTHY"
+    echo "no established BEAST connection to "$BEASTIP:$BEASTPORT". $STR_UNHEALTHY"
     EXITCODE=1
 fi
 
