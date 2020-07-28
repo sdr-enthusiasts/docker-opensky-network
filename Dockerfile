@@ -51,6 +51,10 @@ RUN set -x && \
 
 # Copy config files
 COPY etc/ /etc/
+COPY healthcheck.sh /healthcheck.sh
 
 # Set s6 init as entrypoint
 ENTRYPOINT [ "/init" ]
+
+# Add healthcheck
+HEALTHCHECK --start-period=300s CMD /healthcheck.sh
