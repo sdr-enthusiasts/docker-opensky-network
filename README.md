@@ -34,6 +34,7 @@ To do this, run the command:
 timeout 60s docker run \
     --rm \
     -it \
+    --link dump1090:beast \
     -e LAT=YOURLATITUDE \
     -e LONG=YOURLONGITUDE \
     -e ALT=YOURALTITUDE \
@@ -49,6 +50,8 @@ Be sure to change the following:
 * Replace `YOURALTITUDE` with the altitude above sea level of your antenna *in metres*
 * Replace `YOURBEASTHOST` with the IP or hostname of your Beast provider (`readsb`/`dump1090`)
 * Replace `YOUROPENSKYUSERNAME` with your OpenSky Network username
+
+Your container needs to know how to access the container or host running dump1090. Set a `--link` entry to point to the Docker container with your Beast provider. This example assumes it is called "dump1090" and that BEASTHOST is set to "beast".
 
 Once the container has started, you should see a message such as:
 
