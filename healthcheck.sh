@@ -58,7 +58,14 @@ else
 fi
 
 # Attempt to resolve BEASTHOST into an IP address
-if ! BEASTIP=$(s6-dnsip4 "$BEASTHOST" 2> /dev/null); then
+if BEASTIP=$(getent hosts "$BEASTHOST" 2> /dev/null | cut -d ' ' -f 1); then
+  :
+  #echo "got host via getent"
+elif BEASTIP=$(s6-dnsip4 "$BEASTHOST" 2> /dev/null); then
+  :
+  #echo "got host via s6-dnsip4"
+else
+  #echo "no host found"
   BEASTIP="$BEASTHOST"
 fi
 
@@ -71,3 +78,4 @@ else
 fi
 
 exit $EXITCODE
+
