@@ -117,6 +117,7 @@ docker run \
  -d \
  --rm \
  --name opensky \
+ --network=ADSBNET \
  -e TZ="YOURTIMEZONE" \
  -e BEASTHOST=YOURBEASTHOST \
  -e LAT=YOURLATITUDE \
@@ -135,6 +136,7 @@ Be sure to change the following:
 * Replace `YOURBEASTHOST` with the IP or hostname of your Beast provider (`readsb`/`dump1090`)
 * Replace `YOUROPENSKYUSERNAME` with your OpenSky Network username
 * Replace `YOUROPENSKYSERIAL` with your OpenSky feeder serial
+* Replace `ADSBNET` with the name of your docker network containing your `BEASTHOST`.
 
 For example:
 
@@ -143,6 +145,7 @@ docker run \
  -d \
  --rm \
  --name opensky \
+ --network=adsbnet \
  -e TZ="Australia/Perth" \
  -e BEASTHOST=10.0.0.1 \
  -e LAT=-33.33333 \
