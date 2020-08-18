@@ -36,20 +36,22 @@ fi
 
 # Generate config based on environment variables
 CONFIGFILE=/var/lib/openskyd/conf.d/10-opensky.conf
-echo "[GPS]" > ${CONFIGFILE}
-echo "Latitude=${LAT}" >> ${CONFIGFILE}
-echo "Longitude=${LONG}" >> ${CONFIGFILE}
-echo "Altitude=${ALT}" >> ${CONFIGFILE}
-echo "" >> ${CONFIGFILE}
-echo "[DEVICE]" >> ${CONFIGFILE}
-echo "Type=${OPENSKY_DEVICE_TYPE}" >> ${CONFIGFILE}
-echo "" >> ${CONFIGFILE}
-echo "[IDENT]" >> ${CONFIGFILE}
-echo "Username=${OPENSKY_USERNAME}" >> ${CONFIGFILE}
-echo "" >> ${CONFIGFILE}
-echo "[INPUT]" >> ${CONFIGFILE}
-echo "Host=${BEASTHOST}" >> ${CONFIGFILE}
-echo "Port=${BEASTPORT}" >> ${CONFIGFILE}
+{
+  echo "[GPS]"
+  echo "Latitude=${LAT}"
+  echo "Longitude=${LONG}"
+  echo "Altitude=${ALT}"
+  echo ""
+  echo "[DEVICE]"
+  echo "Type=${OPENSKY_DEVICE_TYPE}"
+  echo ""
+  echo "[IDENT]"
+  echo "Username=${OPENSKY_USERNAME}"
+  echo ""
+  echo "[INPUT]"
+  echo "Host=${BEASTHOST}"
+  echo "Port=${BEASTPORT}"
+} > ${CONFIGFILE}
 
 if [ -z "${OPENSKY_SERIAL}" ]
 then
@@ -60,6 +62,8 @@ then
   echo ""
 else
   CONFIGFILE=/var/lib/openskyd/conf.d/05-serial.conf
-  echo "[Device]" >> ${CONFIGFILE}
-  echo "serial = ${OPENSKY_SERIAL}" >> ${CONFIGFILE}
+  {
+    echo "[Device]"
+    echo "serial = ${OPENSKY_SERIAL}"
+  } > ${CONFIGFILE}
 fi
