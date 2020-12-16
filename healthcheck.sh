@@ -49,7 +49,7 @@ set -o pipefail
 
 check_service_deathtally 'opensky-feeder'
 
-# make sure we're feeding beast/beastreduce data to adsbexchange 
+# make sure we're feeding beast/beastreduce data to opensky 
 if netstat -anp | grep -P '^tcp.*\:10004.*ESTABLISHED.*openskyd.*$' > /dev/null; then
     echo "established connection to opensky network. $STR_HEALTHY"
 else
