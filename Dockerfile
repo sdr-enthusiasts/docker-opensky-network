@@ -50,7 +50,8 @@ RUN set -x && \
         && \
     apt-get autoremove -y && \
     apt-get clean -y && \
-    rm -rf /src/* /tmp/* /var/lib/apt/lists/*
+    rm -rf /src/* /tmp/* /var/lib/apt/lists/* && \
+    grep 'opensky-feeder' /VERSIONS | cut -d ' ' -f2- | tr -d ' ' > /CONTAINER_VERSION
 
 # Set s6 init as entrypoint
 ENTRYPOINT [ "/init" ]
