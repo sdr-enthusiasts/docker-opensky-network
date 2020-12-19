@@ -1,6 +1,11 @@
 # mikenye/opensky-network
 
-Docker container running [OpenSky Network's](https://opensky-network.org/)'s `opensky-feeder`. Designed to work in tandem with [mikenye/readsb](https://hub.docker.com/repository/docker/mikenye/readsb) or [mikenye/piaware](https://hub.docker.com/repository/docker/mikenye/piaware). Builds and runs on `x86_64`, `arm64` and `arm32v7` (see below).
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/mikenye/docker-opensky-network/Deploy%20to%20Docker%20Hub)](https://github.com/mikenye/docker-opensky-network/actions?query=workflow%3A%22Deploy+to+Docker+Hub%22)
+[![Docker Pulls](https://img.shields.io/docker/pulls/mikenye/opensky-network.svg)](https://hub.docker.com/r/mikenye/opensky-network)
+[![Docker Image Size (tag)](https://img.shields.io/docker/image-size/mikenye/opensky-network/latest)](https://hub.docker.com/r/mikenye/opensky-network)
+[![Discord](https://img.shields.io/discord/734090820684349521)](https://discord.gg/sTf9uYF)
+
+Docker container running [OpenSky Network's](https://opensky-network.org/)'s `opensky-feeder`. Designed to work in tandem with [mikenye/readsb-protobuf](https://hub.docker.com/repository/docker/mikenye/readsb-protobuf). Builds and runs on `x86_64`, `arm64`, `arm32v7` and `386`.
 
 `opensky-feeder` pulls ModeS/BEAST information from a host or container providing ModeS/BEAST data, and sends data to PlaneFinder.
 
@@ -11,14 +16,6 @@ For more information on what `opensky-feeder` is, see here: <https://opensky-net
 * `latest` (`master` branch, `Dockerfile`)
 * `latest_nohealthcheck` is the same as the `latest` version above. However, this version has the docker healthcheck removed. This is done for people running platforms (such as [Nomad](https://www.nomadproject.io)) that don't support manually disabling healthchecks, where healthchecks are not wanted.
 * Version and architecture specific tags available
-
-## Multi Architecture Support
-
-Currently, this image should pull and run on the following architectures:
-
-* `amd64`: Linux x86-64
-* `arm32v7`: ARMv7 32-bit (Odroid HC1/HC2/XU4, RPi 2/3)
-* `arm64`: ARMv8 64-bit (RPi 4 64-bit OSes)
 
 ## Obtaining an OpenSky Network Feeder Serial Number
 
