@@ -6,6 +6,8 @@ ENV BEASTPORT=30005 \
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
+COPY rootfs/ /
+
 RUN set -x && \
     apt-get update -y && \
     apt-get install --no-install-recommends -y \
@@ -50,12 +52,8 @@ RUN set -x && \
     apt-get clean -y && \
     rm -rf /src/* /tmp/* /var/lib/apt/lists/*
 
-# Copy config files
-COPY etc/ /etc/
-COPY healthcheck.sh /healthcheck.sh
-
 # Set s6 init as entrypoint
 ENTRYPOINT [ "/init" ]
 
 # Add healthcheck
-HEALTHCHECK --start-period=3600s --interval=600s CMD /healthcheck.sh
+HEALTHCHECK --start-period=3600s --interval=600s CMD /scripts/healthcheck.sh
