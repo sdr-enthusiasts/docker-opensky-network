@@ -1,4 +1,4 @@
-FROM debian:buster-20220316-slim
+FROM ghcr.io/sdr-enthusiasts/docker-baseimage:base
 
 ENV BEASTPORT=30005 \
     OPENSKY_DEVICE_TYPE=default \
@@ -9,16 +9,16 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 COPY rootfs/ /
 
 RUN set -x && \
-    apt-get update -y && \
-    apt-get install --no-install-recommends -y \
-        apt-transport-https \
-        binutils \
-        ca-certificates \
-        curl \
-        file \
-        gnupg \
-        net-tools \
-        xz-utils \
+    TEMP_PACKAGES=() && \
+    KEPT_PACKAGES=() && \
+    TEMP_PACKAGES+=(apt-transport-https) && \
+    TEMP_PACKAGES+=(binutils) && \
+    TEMP_PACKAGES+=(xz-utils) && \
+    TEMP_PACKAGES+=(gnupg) && \
+    apt-get update && \
+    apt-get install -y --no-install-recommends \
+        "${KEPT_PACKAGES[@]}" \
+        "${TEMP_PACKAGES[@]}" \
         && \
     # Add opensky-network repo
     curl --output - https://opensky-network.org/files/firmware/opensky.gpg.pub | apt-key add - && \
@@ -36,21 +36,11 @@ RUN set -x && \
     # Document version
     OPENSKY_VERSION=$(apt-cache show opensky-feeder | grep Version | cut -d " " -f 2) && \
     echo "opensky-feeder ${OPENSKY_VERSION}" >> /VERSIONS && \
-    # Deploy s6-overlay
-    curl -s https://raw.githubusercontent.com/mikenye/deploy-s6-overlay/master/deploy-s6-overlay.sh | sh && \
     # Clean up
-    apt-get remove -y \
-        apt-transport-https \
-        binutils \
-        ca-certificates \
-        curl \
-        file \
-        gnupg \
-        xz-utils \
-        && \
+    apt-get remove -y "${TEMP_PACKAGES[@]}" && \
     apt-get autoremove -y && \
-    apt-get clean -y && \
     rm -rf /src/* /tmp/* /var/lib/apt/lists/* && \
+    # Document versions
     grep 'opensky-feeder' /VERSIONS | cut -d ' ' -f2- | tr -d ' ' > /CONTAINER_VERSION
 
 # Set s6 init as entrypoint
