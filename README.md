@@ -34,7 +34,7 @@ timeout 60s docker run \
     -e ALT=YOURALTITUDE \
     -e BEASTHOST=YOURBEASTHOST \
     -e OPENSKY_USERNAME=YOUROPENSKYUSERNAME \
-    mikenye/opensky-network
+    ghcr.io/sdr-enthusiasts/docker-opensky-network:latest
 ```
 
 Be sure to change the following:
@@ -120,7 +120,7 @@ docker run \
  -e ALT=YOURALTITUDE \
  -e OPENSKY_USERNAME=YOUROPENSKYUSERNAME \
  -e OPENSKY_SERIAL=YOUROPENSKYSERIAL \
- mikenye/opensky-network
+ ghcr.io/sdr-enthusiasts/docker-opensky-network:latest
 ```
 
 Be sure to change the following:
@@ -148,7 +148,7 @@ docker run \
  -e ALT=100.8 \
  -e OPENSKY_USERNAME=johnnytightlips \
  -e OPENSKY_SERIAL=-1408234269 \
- mikenye/opensky-network
+ ghcr.io/sdr-enthusiasts/docker-opensky-network:latest
 ```
 
 Please note, the altitude figure is given in metres and no units should be specified.
@@ -160,7 +160,7 @@ version: '2.0'
 
 services:
   opensky:
-    image: mikenye/opensky-network:latest
+    image: ghcr.io/sdr-enthusiasts/docker-opensky-network:latest
     tty: true
     container_name: opensky
     restart: always
