@@ -50,6 +50,7 @@ CONFIGFILE=/var/lib/openskyd/conf.d/10-opensky.conf
   echo ""
   echo "[INPUT]"
   echo "Host=${BEASTHOST}"
+  # shellcheck disable=SC2153
   echo "Port=${BEASTPORT}"
 } > ${CONFIGFILE}
 
