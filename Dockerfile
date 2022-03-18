@@ -14,6 +14,7 @@ RUN set -x && \
     TEMP_PACKAGES+=(apt-transport-https) && \
     TEMP_PACKAGES+=(binutils) && \
     TEMP_PACKAGES+=(xz-utils) && \
+    TEMP_PACKAGES+=(gnupg) && \
     apt-get update && \
     apt-get install -y --no-install-recommends \
         "${KEPT_PACKAGES[@]}" \
