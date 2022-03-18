@@ -1,4 +1,4 @@
-FROM debian:buster-20220125-slim
+FROM debian:buster-20220316-slim
 
 ENV BEASTPORT=30005 \
     OPENSKY_DEVICE_TYPE=default \
