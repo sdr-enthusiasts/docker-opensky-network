@@ -41,7 +41,7 @@ RUN set -x && \
     apt-get autoremove -y && \
     rm -rf /src/* /tmp/* /var/lib/apt/lists/* && \
     # Document versions
-    grep 'opensky-feeder' /VERSIONS | cut -d ' ' -f2- | tr -d ' ' > /CONTAINER_VERSION
+    grep 'opensky-feeder' /VERSIONS | cut -d ' ' -f2- | tr -d ' ' > /IMAGE_VERSION
 
 # Set s6 init as entrypoint
 ENTRYPOINT [ "/init" ]
