@@ -8,7 +8,10 @@ on:
     workflows:
       - 'Pull Request'
       - 'Deploy'
-      - 'Linting (Non-Image)'
+      - 'Linting (YAML)'
+      - 'Linting (Markdown)'
+      - 'Linting (Shellcheck)'
+      - 'Linting (Hadolint)'
     types: ['requested']
 
 jobs:
