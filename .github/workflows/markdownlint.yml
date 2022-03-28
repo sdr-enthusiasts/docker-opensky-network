@@ -20,6 +20,7 @@ jobs:
       - uses: hadolint/hadolint-action@v2.0.0
         with:
           dockerfile: Dockerfile
+          ignore: DL3008
 
       # - uses: actions/checkout@v3
       # - name: Pull markdownlint/markdownlint:latest Image
