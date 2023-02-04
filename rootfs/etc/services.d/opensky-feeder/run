@@ -1,5 +1,7 @@
 #!/usr/bin/with-contenv bash
 #shellcheck shell=bash
 
-/usr/bin/openskyd-dump1090 2>&1 | awk -W Interactive '{print "[opensky-feeder] " $0}'
+/usr/bin/openskyd-dump1090 2>&1 | \
+    stdbuf -oL awk '{print "[" strftime("%Y/%m/%d %H:%M:%S", systime()) "][opensky-feeder] " $0}'
+
     
