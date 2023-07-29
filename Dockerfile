@@ -17,9 +17,9 @@ RUN set -x && \
     TEMP_PACKAGES+=(gnupg) && \
     apt-get update && \
     apt-get install -y --no-install-recommends \
-        "${KEPT_PACKAGES[@]}" \
-        "${TEMP_PACKAGES[@]}" \
-        && \
+    "${KEPT_PACKAGES[@]}" \
+    "${TEMP_PACKAGES[@]}" \
+    && \
     # Add opensky-network repo
     curl --output - https://opensky-network.org/files/firmware/opensky.gpg.pub | apt-key add - && \
     echo deb https://opensky-network.org/repos/debian opensky custom > /etc/apt/sources.list.d/opensky.list && \
@@ -30,8 +30,13 @@ RUN set -x && \
     chown _apt /src/opensky-feeder && \
     apt-get download opensky-feeder && \
     ar vx ./*.deb && \
-    tar xvf data.tar.xz -C / && \
+    # There is an issue with bookworm and this deb package. If we unzip it over /
+    # it appears to mess up the filesystem. So we unzip it to /tmp/opensky and
+    # then copy the binary to /usr/bin
+    mkdir /tmp/opensky && \
+    tar xvf data.tar.xz -C /tmp/opensky && \
     mkdir -p /var/lib/openskyd/conf.d && \
+    cp /tmp/opensky/usr/bin/openskyd-dump1090 /usr/bin/ && \
     popd && \
     # Document version
     OPENSKY_VERSION=$(apt-cache show opensky-feeder | grep Version | cut -d " " -f 2) && \
