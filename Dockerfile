@@ -36,6 +36,7 @@ RUN set -x && \
     mkdir /tmp/opensky && \
     tar xvf data.tar.xz -C /tmp/opensky && \
     mkdir -p /var/lib/openskyd/conf.d && \
+    mkdir -p /etc/openskyd/conf.d && \
     cp /tmp/opensky/usr/bin/openskyd-dump1090 /usr/bin/ && \
     popd && \
     # Document version
