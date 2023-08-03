@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Globals
-S6_SERVICE_ROOT="/run/s6/services"
+S6_SERVICE_ROOT="/run/s6/legacy-services"
 STR_HEALTHY="OK"
 STR_UNHEALTHY="UNHEALTHY"
 
@@ -49,7 +49,7 @@ set -o pipefail
 
 check_service_deathtally 'opensky-feeder'
 
-# make sure we're feeding beast/beastreduce data to opensky 
+# make sure we're feeding beast/beastreduce data to opensky
 if netstat -anp | grep -P '^tcp.*\:10004.*ESTABLISHED.*openskyd.*$' > /dev/null; then
     echo "established connection to opensky network. $STR_HEALTHY"
 else
@@ -69,7 +69,7 @@ else
   BEASTIP="$BEASTHOST"
 fi
 
-# Make sure we're connected to a BEASTHOST 
+# Make sure we're connected to a BEASTHOST
 if netstat -anp | grep "$BEASTIP:$BEASTPORT" | grep ESTABLISHED > /dev/null; then
     echo "established BEAST connection to \"$BEASTIP:$BEASTPORT\". $STR_HEALTHY"
 else
