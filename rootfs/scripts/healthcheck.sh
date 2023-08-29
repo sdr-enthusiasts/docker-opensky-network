@@ -1,4 +1,4 @@
-#!/command/with-contenv
+#!/command/with-contenv bash
 
 # Globals
 S6_SERVICE_ROOT="/run/service"
