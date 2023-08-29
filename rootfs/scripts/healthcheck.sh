@@ -1,7 +1,7 @@
-#!/usr/bin/env bash
+#!/command/with-contenv
 
 # Globals
-S6_SERVICE_ROOT="/run/s6/legacy-services"
+S6_SERVICE_ROOT="/run/service"
 STR_HEALTHY="OK"
 STR_UNHEALTHY="UNHEALTHY"
 
