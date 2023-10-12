@@ -1,4 +1,5 @@
 #!/command/with-contenv bash
+#shellcheck shell=bash
 
 # Globals
 S6_SERVICE_ROOT="/run/service"
@@ -78,4 +79,3 @@ else
 fi
 
 exit $EXITCODE
-

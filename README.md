@@ -11,9 +11,9 @@ For more information on what `opensky-feeder` is, see here: <https://opensky-net
 
 ## Supported tags and respective Dockerfiles
 
-* `latest` (`master` branch, `Dockerfile`)
-* `latest_nohealthcheck` is the same as the `latest` version above. However, this version has the docker healthcheck removed. This is done for people running platforms (such as [Nomad](https://www.nomadproject.io)) that don't support manually disabling healthchecks, where healthchecks are not wanted.
-* Version and architecture specific tags available
+- `latest` (`master` branch, `Dockerfile`)
+- `latest_nohealthcheck` is the same as the `latest` version above. However, this version has the docker healthcheck removed. This is done for people running platforms (such as [Nomad](https://www.nomadproject.io)) that don't support manually disabling healthchecks, where healthchecks are not wanted.
+- Version and architecture specific tags available
 
 ## Obtaining an OpenSky Network Feeder Serial Number
 
@@ -39,11 +39,11 @@ timeout 60s docker run \
 
 Be sure to change the following:
 
-* Replace `YOURLATITUDE` with the latitude of your antenna (xx.xxxxx)
-* Replace `YOURLONGITUDE` with the longitude of your antenna (xx.xxxxx)
-* Replace `YOURALTITUDE` with the altitude above sea level of your antenna *in metres*
-* Replace `YOURBEASTHOST` with the IP or hostname of your Beast provider (`readsb`/`dump1090`)
-* Replace `YOUROPENSKYUSERNAME` with your OpenSky Network username
+- Replace `YOURLATITUDE` with the latitude of your antenna (xx.xxxxx)
+- Replace `YOURLONGITUDE` with the longitude of your antenna (xx.xxxxx)
+- Replace `YOURALTITUDE` with the altitude above sea level of your antenna _in metres_
+- Replace `YOURBEASTHOST` with the IP or hostname of your Beast provider (`readsb`/`dump1090`)
+- Replace `YOUROPENSKYUSERNAME` with your OpenSky Network username
 
 Once the container has started, you should see a message such as:
 
@@ -125,13 +125,13 @@ docker run \
 
 Be sure to change the following:
 
-* Replace `YOURLATITUDE` with the latitude of your antenna (xx.xxxxx)
-* Replace `YOURLONGITUDE` with the longitude of your antenna (xx.xxxxx)
-* Replace `YOURALTITUDE` with the altitude above sea level of your antenna *in metres*
-* Replace `YOURBEASTHOST` with the IP or hostname of your Beast provider (`readsb`/`dump1090`)
-* Replace `YOUROPENSKYUSERNAME` with your OpenSky Network username
-* Replace `YOUROPENSKYSERIAL` with your OpenSky feeder serial
-* Replace `ADSBNET` with the name of your docker network containing your `BEASTHOST`.
+- Replace `YOURLATITUDE` with the latitude of your antenna (xx.xxxxx)
+- Replace `YOURLONGITUDE` with the longitude of your antenna (xx.xxxxx)
+- Replace `YOURALTITUDE` with the altitude above sea level of your antenna _in metres_
+- Replace `YOURBEASTHOST` with the IP or hostname of your Beast provider (`readsb`/`dump1090`)
+- Replace `YOUROPENSKYUSERNAME` with your OpenSky Network username
+- Replace `YOUROPENSKYSERIAL` with your OpenSky feeder serial
+- Replace `ADSBNET` with the name of your docker network containing your `BEASTHOST`.
 
 For example:
 
@@ -156,7 +156,7 @@ Please note, the altitude figure is given in metres and no units should be speci
 ## Up-and-Running with Docker Compose
 
 ```yaml
-version: '2.0'
+version: "2.0"
 
 services:
   opensky:
@@ -180,16 +180,16 @@ services:
 
 There are a series of available environment variables:
 
-| Environment Variable | Purpose                         | Default |
-| -------------------- | ------------------------------- | ------- |
-| `BEASTHOST`          | Required. IP/Hostname of a Mode-S/BEAST provider (dump1090/readsb) | |
-| `BEASTPORT`          | Optional. TCP port number of Mode-S/BEAST provider (dump1090/readsy) | 30005 |
-| `OPENSKY_USERNAME`   | Required. OpenSky Network Username | |
-| `OPENSKY_SERIAL`     | Optional. OpenSky Feeder Serial | Automatically generated |
-| `LAT` | Required. Latitude of the antenna | |
-| `LONG` | Required. Longitude of the antenna | |
-| `ALT` | Required. Altitude in *metres* | |
-| `TZ`                 | Optional. Your local timezone | GMT     |
+| Environment Variable | Purpose                                                              | Default                 |
+| -------------------- | -------------------------------------------------------------------- | ----------------------- |
+| `BEASTHOST`          | Required. IP/Hostname of a Mode-S/BEAST provider (dump1090/readsb)   |                         |
+| `BEASTPORT`          | Optional. TCP port number of Mode-S/BEAST provider (dump1090/readsy) | 30005                   |
+| `OPENSKY_USERNAME`   | Required. OpenSky Network Username                                   |                         |
+| `OPENSKY_SERIAL`     | Optional. OpenSky Feeder Serial                                      | Automatically generated |
+| `LAT`                | Required. Latitude of the antenna                                    |                         |
+| `LONG`               | Required. Longitude of the antenna                                   |                         |
+| `ALT`                | Required. Altitude in _metres_                                       |                         |
+| `TZ`                 | Optional. Your local timezone                                        | GMT                     |
 
 ## Ports
 
@@ -197,7 +197,7 @@ No ports need to be mapped into this container.
 
 ## Logging
 
-* All processes are logged to the container's stdout, and can be viewed with `docker logs [-f] container`.
+- All processes are logged to the container's stdout, and can be viewed with `docker logs [-f] container`.
 
 ## Getting Help
 
