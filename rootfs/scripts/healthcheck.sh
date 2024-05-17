@@ -59,7 +59,7 @@ else
 fi
 
 # Attempt to resolve BEASTHOST into an IP address
-if BEASTIP=$(getent hosts "$BEASTHOST" 2> /dev/null | cut -d ' ' -f 1); then
+if BEASTIP=$(getent ahostsv4 "$BEASTHOST" | grep "$BEASTHOST" 2> /dev/null | cut -d ' ' -f 1); then
   :
   #echo "got host via getent"
 elif BEASTIP=$(s6-dnsip4 "$BEASTHOST" 2> /dev/null); then
