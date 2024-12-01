@@ -22,7 +22,7 @@ RUN set -x && \
     "${TEMP_PACKAGES[@]}" \
     && \
     # Add opensky-network repo
-    curl --output - https://opensky-network.org/files/firmware/opensky.gpg.pub | apt-key add - && \
+    wget -q  -O - https://opensky-network.org/files/firmware/opensky.gpg.pub | apt-key add - && \
     echo deb https://opensky-network.org/repos/debian opensky custom > /etc/apt/sources.list.d/opensky.list && \
     apt-get update -y && \
     # Install opensky-feeder
