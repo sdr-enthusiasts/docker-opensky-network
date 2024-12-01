@@ -161,7 +161,6 @@ version: "2.0"
 services:
   opensky:
     image: ghcr.io/sdr-enthusiasts/docker-opensky-network:latest
-    tty: true
     container_name: opensky
     restart: always
     environment:
