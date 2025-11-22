@@ -12,7 +12,7 @@ jobs:
     name: Run shellcheck against shell scripts
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5.0.0
+      - uses: actions/checkout@v6.0.0
       - name: Run ShellCheck
         uses: ludeeus/action-shellcheck@master
         with:
