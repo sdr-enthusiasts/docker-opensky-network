@@ -12,7 +12,7 @@ COPY rootfs/ /
 RUN set -x && \
     # Install opensky-feeder
     mkdir -p /src/opensky-feeder && \
-    wget --timeout 30 -nv -O opensky-feeder.deb \
+    wget --tries 2 --timeout 10 -nv -O opensky-feeder.deb \
     "https://opensky-network.org/files/firmware/opensky-feeder_latest_$(dpkg --print-architecture).deb" && \
     dpkg -x opensky-feeder.deb /src/opensky-feeder && \
     cp /src/opensky-feeder/usr/bin/openskyd-dump1090 /usr/bin/ && \
