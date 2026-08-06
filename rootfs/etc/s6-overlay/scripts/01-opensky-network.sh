@@ -24,7 +24,7 @@ if [ -z "${OPENSKY_USERNAME}" ]; then
     EXITCODE=1
 fi
 if [ $EXITCODE -ne 0 ]; then
-    exit 1
+    exit 78
 fi
 
 # Set up timezone
