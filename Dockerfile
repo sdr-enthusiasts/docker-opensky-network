@@ -1,6 +1,4 @@
-FROM ghcr.io/sdr-enthusiasts/docker-baseimage:mlatclient AS mlatclient
-
-FROM ghcr.io/sdr-enthusiasts/docker-baseimage:base
+FROM ghcr.io/sdr-enthusiasts/docker-baseimage:wreadsb
 
 ENV BEASTPORT=30005 \
     OPENSKY_DEVICE_TYPE=default \
@@ -11,12 +9,7 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 COPY rootfs/ /
 
 # hadolint ignore=DL3008,SC2086,SC2039,SC2068
-RUN --mount=type=bind,from=mlatclient,source=/,target=/mlatclient \
-    set -x && \
-    # Install mlat-client from the shared SDR Enthusiasts build image
-    tar zxf /mlatclient/mlatclient.tgz -C / && \
-    apt-get update && \
-    apt-get install -y --no-install-recommends python3-pyasyncore && \
+RUN set -x && \
     # Install opensky-feeder
     mkdir -p /src/opensky-feeder && \
     wget --tries 2 --timeout 10 -nv -O opensky-feeder.deb \
