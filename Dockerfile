@@ -1,4 +1,4 @@
-FROM ghcr.io/sdr-enthusiasts/docker-baseimage:base
+FROM ghcr.io/sdr-enthusiasts/docker-baseimage:wreadsb
 
 ENV BEASTPORT=30005 \
     OPENSKY_DEVICE_TYPE=default \

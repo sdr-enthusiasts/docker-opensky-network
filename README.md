@@ -5,7 +5,7 @@
 
 Docker container running [OpenSky Network's](https://opensky-network.org/)'s `opensky-feeder`. Designed to work in tandem with [sdr-enthusiasts/docker-readsb-protobuf](https://github.com/sdr-enthusiasts/docker-readsb-protobuf). Builds and runs on `x86_64`, `arm64`, `arm32v7` and `386`.
 
-`opensky-feeder` pulls ModeS/BEAST information from a host or container providing ModeS/BEAST data, and sends data to OpenSky.
+`opensky-feeder` pulls ModeS/BEAST information from a host or container providing ModeS/BEAST data, and sends data to OpenSky. The container can also run `mlat-client` to contribute timestamped Mode S messages to OpenSky's multilateration service.
 
 For more information on what `opensky-feeder` is, see here: <https://opensky-network.org/community/projects/30-dump1090-feeder>.
 
@@ -120,6 +120,8 @@ docker run \
  -e ALT=YOURALTITUDE \
  -e OPENSKY_USERNAME=YOUROPENSKYUSERNAME \
  -e OPENSKY_SERIAL=YOUROPENSKYSERIAL \
+ -e ENABLE_MLAT=true \
+ -e MLAT_PRIVACY=false \
  ghcr.io/sdr-enthusiasts/docker-opensky-network:latest
 ```
 
@@ -189,6 +191,10 @@ There are a series of available environment variables:
 | `LONG`               | Required. Longitude of the antenna                                   |                         |
 | `ALT`                | Required. Altitude in _metres_                                       |                         |
 | `TZ`                 | Optional. Your local timezone                                        | GMT                     |
+| `ENABLE_MLAT`        | Optional. Enable OpenSky MLAT contribution                           | `false`                 |
+| `MLAT_PRIVACY`       | Optional. Suppress precise receiver coordinates in MLAT output       | `false`                 |
+| `MLAT_RESULTS_BEASTHOST` | Optional. Host to receive Beast-format MLAT results              |                         |
+| `MLAT_RESULTS_BEASTPORT` | Optional. Port to receive Beast-format MLAT results              |                         |
 
 ## Ports
 
