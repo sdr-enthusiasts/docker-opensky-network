@@ -2,6 +2,7 @@ FROM ghcr.io/sdr-enthusiasts/docker-baseimage:wreadsb
 
 ENV BEASTPORT=30005 \
     OPENSKY_DEVICE_TYPE=default \
+    MLAT_INPUT_TYPE=dump1090 \
     S6_BEHAVIOUR_IF_STAGE2_FAILS=2
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]

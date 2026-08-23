@@ -195,6 +195,7 @@ There are a series of available environment variables:
 | `MLAT_PRIVACY`       | Optional. Suppress precise receiver coordinates in MLAT output       | `false`                 |
 | `MLAT_RESULTS_BEASTHOST` | Optional. Host to receive Beast-format MLAT results              |                         |
 | `MLAT_RESULTS_BEASTPORT` | Optional. Port to receive Beast-format MLAT results              |                         |
+| `MLAT_INPUT_TYPE`    | Optional. Set to radarcape_gps when using such a device (unlikely)   | `false`                 |
 
 ## Ports
 
