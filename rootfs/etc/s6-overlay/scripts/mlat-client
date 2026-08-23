@@ -23,7 +23,7 @@ fi
 mlat_user=$(printf 'osky_%s' "${OPENSKY_SERIAL}" | sed 's/[^A-Za-z0-9_.-]/_/g')
 
 args=(
-    --input-type dump1090
+    --input-type "${MLAT_INPUT_TYPE}"
     --input-connect "${BEASTHOST}:${BEASTPORT:-30005}"
     --server "${MLAT_SERVER:-mlat-server.opensky-network.org:40147}"
     --lat "${LAT}"
