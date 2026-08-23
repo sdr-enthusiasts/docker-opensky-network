@@ -1,0 +1,45 @@
+#!/command/with-contenv bash
+# shellcheck shell=bash disable=SC1091
+
+source /scripts/common
+
+if ! chk_enabled "${ENABLE_MLAT:-false}"; then
+    "${s6wrap[@]}" echo "OpenSky MLAT is disabled"
+    stop_service
+fi
+
+missing=()
+[[ -z "${BEASTHOST:-}" ]] && missing+=(BEASTHOST)
+[[ -z "${LAT:-}" ]] && missing+=(LAT)
+[[ -z "${LONG:-}" ]] && missing+=(LONG)
+[[ -z "${ALT:-}" ]] && missing+=(ALT)
+[[ -z "${OPENSKY_SERIAL:-}" ]] && missing+=(OPENSKY_SERIAL)
+
+if (( ${#missing[@]} )); then
+    "${s6wrap[@]}" echo "OpenSky MLAT is enabled but required configuration is missing: ${missing[*]}"
+    stop_service
+fi
+
+mlat_user=$(printf 'osky_%s' "${OPENSKY_SERIAL}" | sed 's/[^A-Za-z0-9_.-]/_/g')
+
+args=(
+    --input-type dump1090
+    --input-connect "${BEASTHOST}:${BEASTPORT:-30005}"
+    --server "${MLAT_SERVER:-mlat-server.opensky-network.org:40147}"
+    --lat "${LAT}"
+    --lon "${LONG}"
+    --alt "${ALT}"
+    --user "${mlat_user}"
+    --stats-json /run/mlat-client-stats.json
+)
+
+if chk_enabled "${MLAT_PRIVACY:-false}"; then
+    args+=(--privacy)
+fi
+
+if [[ -n "${MLAT_RESULTS_BEASTHOST:-}" && -n "${MLAT_RESULTS_BEASTPORT:-}" ]]; then
+    args+=(--results "beast,connect,${MLAT_RESULTS_BEASTHOST}:${MLAT_RESULTS_BEASTPORT}")
+fi
+
+"${s6wrap[@]}" echo "Starting OpenSky MLAT client as ${mlat_user}"
+exec "${s6wrap[@]}" /usr/local/bin/mlat-client "${args[@]}"

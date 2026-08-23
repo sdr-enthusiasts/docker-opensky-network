@@ -50,6 +50,12 @@ set -o pipefail
 
 check_service_deathtally 'opensky-feeder'
 
+case "${ENABLE_MLAT,,}" in
+    1 | true | on | enabled | enable | yes | y | ok | always | set )
+        check_service_deathtally 'mlat-client'
+        ;;
+esac
+
 # make sure we're feeding beast/beastreduce data to opensky
 if netstat -anp | grep -P '^tcp.*\:10004.*ESTABLISHED.*openskyd.*$' > /dev/null; then
     echo "established connection to opensky network. $STR_HEALTHY"
