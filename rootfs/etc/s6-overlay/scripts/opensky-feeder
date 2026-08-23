@@ -1,5 +1,6 @@
 #!/command/with-contenv bash
 
+# shellcheck source=source-stubs/scripts/common
 source /scripts/common
 
 exec "${s6wrap[@]}" /usr/bin/openskyd-dump1090
