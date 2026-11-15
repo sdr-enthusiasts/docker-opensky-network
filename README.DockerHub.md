@@ -7,7 +7,7 @@ Docker container running [OpenSky Network's](https://opensky-network.org/)'s `op
 
 `opensky-feeder` pulls ModeS/BEAST information from a host or container providing ModeS/BEAST data, and sends data to OpenSky.
 
-For more information on what `opensky-feeder` is, see here: <https://opensky-network.org/community/projects/30-dump1090-feeder>.
+For more information on what `opensky-feeder` is, see here: <https://opensky-network.org/feed>.
 
 ## Documentation
 
